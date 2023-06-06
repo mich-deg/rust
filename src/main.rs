@@ -92,4 +92,29 @@ fn main() {
     const MAX_SALARY: u32 = 100_000;
     println!("The value of the constant is {}", MAX_SALARY);
 
+    /* Strings 
+        - String slices (&str) : fixed length strings
+        - operations on strings 
+     */
+
+    let mut growable_string: String = String::from("This string will grow");
+
+    growable_string.push('s');
+    println!("Hey \"{}\"", growable_string);
+
+    growable_string.pop();
+    println!("Hey \"{}\"", growable_string);
+
+    growable_string.push_str( " which I will use");
+    println!("Hey \"{}\"",growable_string);
+
+    println!("I am going to tell you some basic things about the strings,
+    Is the string empty {}, 
+    The length of the string is {},
+    The string has {} bytes,
+    Does the string contains the word 'use' {}", 
+    growable_string.is_empty(),
+    growable_string.len(),
+    growable_string.capacity(), 
+    growable_string.contains("use"))
 }
