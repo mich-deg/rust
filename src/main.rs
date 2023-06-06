@@ -59,4 +59,37 @@ fn main() {
      
      println!("The value of C1 = {} and C2 = {} ", c1, c2);
 
+     /* Intializing multiple variables */
+
+     let (first_numebr, second_number) = (400, 34.5);
+     println!("The value of first number {} and second number is {}", first_numebr, second_number);
+
+     /* Decimal numbers in other formats */
+     let x = 255;
+     println!("The value of variable x in hexadecimal is {:o}, in octal is {:X}, and in binary is {:b}", x, x, x);
+
+    /* Operations on number in different formats */
+
+    let n1 = 24;
+    let n2 = 23.6;
+
+    let n3 = n1 as f64 + n2;
+
+    println!("The summation is {}", n3);
+
+    /* Shadowing */
+
+    let y = 45;
+
+    {
+        let y = 80;
+        println!("The value of the variable y is inside the inner scope is {}", y); 
+    }
+    println!("The value of the variable y = {}", y);
+
+    /* Constants */
+
+    const MAX_SALARY: u32 = 100_000;
+    println!("The value of the constant is {}", MAX_SALARY);
+
 }
