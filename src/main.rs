@@ -1,120 +1,75 @@
 fn main() {
-    println!("Hello, world!");
 
-    /* Printing Outputs */
+   /* Tuples 
+        - Destructing tuples
+        - Nested tuples
+   */
 
-    println!("The value of the constant is {}", 10);
+   let my_info = ("Salary", 40_000);
+   println!("{} is equal to {}", my_info.0, my_info.1);
 
-    println!("First name {}, Last name {}", "John", "Doe");
+   let (salary, salary_value) = my_info;
+   println!("The values of the individual variables are, {} and {}", &salary, salary_value);
 
-    println!("\n I love {2}, using {1} and {0}", "JavaScript", "Rust", "coding");
+   let nested_tuples = (4, 5.5, (3, 2.5), "Hello");
+   let element = nested_tuples.2.0;
+   println!("The value of element is {}", element);
 
-    println!("{language} is a language empowering everyone to build reliable and efficient software", language="Rust");
- 
-    /* Variables in Rust */
+   /* Arrays
+         - Updating elements
+         - Strings and char arrays
+         - Slices
+    */
 
-    let x = 15;
-    println!("The value of the variable x = {}", x);
+   let mut number_array = [4,5,6,8,9];
+   println!("{}", number_array[0]);
 
-    /* Scalar Data Types 
+   println!("{:?}", number_array);
 
-        Integer: 
-            - signed: i8, i16, i32, i64 -2
-            - unsigned (only +ve number ): u8, u16, u32 
+   number_array[4] = 5;
+   println!("{:?}", number_array);
 
-        Floats
-            -f32, f64
+   let string_array = ["apple", "orange", "grapes", "banana"];
+   println!("{:?}", string_array);
 
-     */
+   let subset_array = &number_array[0..=3];
+   println!("The subset of the value of the array are {:?}", subset_array);
 
-    println!("The maximum number in i8 is equal to {}", std::i8::MAX);
-    println!("The maximum number in u8 is equal to {}", std::u8::MAX);
+   println!("Elements in the array are {}", number_array.len());
 
-    /* Scalar Data Types 
+   println!("The array is occupying {} bytes", std::mem::size_of_val(&number_array));
 
-        Floats
-            -f32, f64
+   let check_index = number_array.get(2);
+   println!("{:?}", check_index);
 
-     */
-    let z = 3.65;
 
-    println!("The maximum number in f32 is {}", std::f32::MAX);
+   /* Vectors */
 
-    /* Scalar Data Types 
+   let mut number_vec = vec![2,3,4,6,7,8,9,3,5,0, 10, 15, 38];
+   println!("{}", number_vec[0]);
 
-        Boolean 
+   number_vec[4] = 40;
+   println!("{:?}", number_vec);
 
-     */
-    let status = false;
-    println!("The values of some of our variables are {:?}", (x, z, status));
+   let mut string_array_1 = vec!["apple", "orange", "grapes", "banana"];
+   string_array_1[0] = "John Doe";
 
-    /* Scalar Data Types 
+   let subset_vec = &number_vec[0..6];
+   println!("The subset of values of the vector are {:?}", subset_vec);
 
-        Characters
+   println!("Elements in the vector are {}", number_vec.len());
 
-     */
-     
-     let c1 = 'A';
-     let c2 = '\u{288A}';
-     
-     println!("The value of C1 = {} and C2 = {} ", c1, c2);
+   let check_index = number_vec.get(7);
+   println!("{:?}", check_index);
 
-     /* Intializing multiple variables */
+   number_vec.push(50);
+   number_vec.push(90);
 
-     let (first_numebr, second_number) = (400, 34.5);
-     println!("The value of first number {} and second number is {}", first_numebr, second_number);
+   println!("The values of the vector are {:?}", number_vec);
 
-     /* Decimal numbers in other formats */
-     let x = 255;
-     println!("The value of variable x in hexadecimal is {:o}, in octal is {:X}, and in binary is {:b}", x, x, x);
+   number_vec.remove(5);
+   println!("The vector after removing the element at index 5 is {:?}", number_vec);
 
-    /* Operations on number in different formats */
+   println!("The value of 3 exist in the vector {}", number_vec.contains(&3));
 
-    let n1 = 24;
-    let n2 = 23.6;
-
-    let n3 = n1 as f64 + n2;
-
-    println!("The summation is {}", n3);
-
-    /* Shadowing */
-
-    let y = 45;
-
-    {
-        let y = 80;
-        println!("The value of the variable y is inside the inner scope is {}", y); 
-    }
-    println!("The value of the variable y = {}", y);
-
-    /* Constants */
-
-    const MAX_SALARY: u32 = 100_000;
-    println!("The value of the constant is {}", MAX_SALARY);
-
-    /* Strings 
-        - String slices (&str) : fixed length strings
-        - operations on strings 
-     */
-
-    let mut growable_string: String = String::from("This string will grow");
-
-    growable_string.push('s');
-    println!("Hey \"{}\"", growable_string);
-
-    growable_string.pop();
-    println!("Hey \"{}\"", growable_string);
-
-    growable_string.push_str( " which I will use");
-    println!("Hey \"{}\"",growable_string);
-
-    println!("I am going to tell you some basic things about the strings,
-    Is the string empty {}, 
-    The length of the string is {},
-    The string has {} bytes,
-    Does the string contains the word 'use' {}", 
-    growable_string.is_empty(),
-    growable_string.len(),
-    growable_string.capacity(), 
-    growable_string.contains("use"))
 }
