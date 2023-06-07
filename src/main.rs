@@ -1,53 +1,48 @@
 fn main() {
+     /* Rust ownership
+          Each value in Rust has an owner.
+          There can only be one owner at a time.
+          When the owner goes out of scope, the value will be dropped.
+      */
 
-     basic_fn();
-     
-     function_with_inputs("John", 40_000);
+     let  x = 30;
+     let  y = x;
+     println!("The value of x {} and the value of y {}", x, y);
 
-     let first_name = "Doe";
-     let salary_info = 50_000;
-     function_with_inputs(first_name, salary_info);
+     let s1 = String::from("hello");
+     let s2 = &s1; // borrowing and referencing
+     let s3 = s1.clone(); // cloning
+     println!("The value of s1 {} and the value of s2 {} or s3 {}", s1, s2, s3);
 
-    let multiply =  function_io(10, 15);
-    println!("The answer of the multiplication is {}", multiply );
+     let num_vec1 = vec![2,4,6,8,3,5,7,9];
+     let num_vec2 = &num_vec1; // borrowing and referencing
+     println!("The value of first vector is {:?} and the second vector is {:?}", num_vec1, num_vec2);
 
-    let (multiplication, addition, subtraction) = function_input_with_multiple_output(10, 15);
-    println!("M = {}, Add = {}, Sub = {}", multiplication, addition, subtraction);
+     let num_vec2 = num_vec1.clone(); // cloning 
+     println!("The value of first vector is {:?} and the second vector is {:?}", num_vec1, num_vec2);
 
-    /* Code Blocks */
+     /* ownership functions */
 
-    let full_name = {
-     let first_name = "John";
-     let last_name = "Doe";
-     format!("{} {}", first_name, last_name)
-    };
+     let stack_num = 32;
+     let mut heap_num = vec![4,5,6,9,3];
 
-    println!("My full name is {}", full_name);
+     stack_function(stack_num);
+     println!("The stack variable is copied and the original value was {} ", stack_num);
 
-    /* Inputs from user */
-
-    let mut n = String::new();
-    std::io::stdin()
-    .read_line(&mut n)
-    .expect("failed to read input");
-    
-    let n:f64 = n.trim().parse().expect("invalid input");
-    println!("{:?}", n);
+     heap_function(&mut heap_num);
+     println!("The value of the vector outside the function is {:?}", heap_num)
 
 }
 
-fn basic_fn(){
-     println!("This is a basic function");
+
+
+fn stack_function(mut stack_num: i32)
+{
+     stack_num = 56;
+     println!("The copied value of the variable has been updated to {}", stack_num);
 }
 
-fn function_with_inputs(name: &str, salary: i32){
-     println!("The name is {} and the salary is {}",name, salary);
-}
-
-fn function_io(num1:i32, num2:i32) -> i32 {
-     num1 * num2
-}
-
-fn function_input_with_multiple_output(num1:i32, num2:i32) -> (i32, i32, i32) {
-     (num1*num2, num1+num2, num1-num2)
+fn heap_function(var: &mut Vec<i32>){
+     var.push(35);
+     println!("The value of the vector inside the function is {:?}", var)
 }
